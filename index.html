@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <style>
+        #admin-section {
+            display: none; /* 기본적으로 숨김 */
+        }
+    </style>
+</head>
+<body>
+    <h1>안녕하세요, GitHub Pages!</h1>
+    <p id="content">수정할 내용입니다.</p>
+
+    <div id="admin-section">
+        <h2>내용 수정</h2>
+        <textarea id="new-content" rows="4" cols="50"></textarea><br>
+        <button onclick="updateContent()">수정하기</button>
+    </div>
+
+    <div id="login-section">
+        <h2>관리자 로그인</h2>
+        <input type="password" id="password" placeholder="비밀번호">
+        <button onclick="login()">로그인</button>
+    </div>
+
+    <script>
+        const correctPassword = "your_password"; // 원하는 비밀번호로 변경하세요.
+
+        function login() {
+            const passwordInput = document.getElementById("password").value;
+
+            if (passwordInput === correctPassword) {
+                document.getElementById("admin-section").style.display = "block";
+                document.getElementById("login-section").style.display = "none";
+                alert("로그인 성공!");
+            } else {
+                alert("비밀번호가 틀렸습니다.");
+            }
+        }
+
+        function updateContent() {
+            const newContent = document.getElementById("new-content").value;
+            document.getElementById("content").innerText = newContent;
+            alert("내용이 수정되었습니다.");
+        }
+    </script>
+</body>
+</html>
