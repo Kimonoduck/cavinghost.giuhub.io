@@ -8,15 +8,38 @@
         #admin-section {
             display: none; /* 기본적으로 숨김 */
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+        }
+        img {
+            max-width: 100%; /* 이미지 크기를 셀에 맞춤 */
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <h1>안녕하세요, GitHub Pages!</h1>
-    <p id="content">수정할 내용입니다.</p>
+    <table id="content">
+        <tr>
+            <td><img src="image1.jpg" alt="이미지 1"></td>
+            <td><img src="image2.jpg" alt="이미지 2"></td>
+        </tr>
+        <tr>
+            <td><img src="image3.jpg" alt="이미지 3"></td>
+            <td><img src="image4.jpg" alt="이미지 4"></td>
+        </tr>
+    </table>
 
     <div id="admin-section">
         <h2>내용 수정</h2>
-        <textarea id="new-content" rows="4" cols="50"></textarea><br>
+        <textarea id="new-content" rows="4" cols="50" placeholder="새로운 이미지 URL을 입력하세요 (각 줄에 하나)"></textarea><br>
         <button onclick="updateContent()">수정하기</button>
     </div>
 
@@ -42,8 +65,14 @@
         }
 
         function updateContent() {
-            const newContent = document.getElementById("new-content").value;
-            document.getElementById("content").innerText = newContent;
+            const newContent = document.getElementById("new-content").value.split('\n');
+            const images = document.querySelectorAll('#content img');
+
+            for (let i = 0; i < images.length; i++) {
+                if (newContent[i]) {
+                    images[i].src = newContent[i]; // 새로운 이미지 URL로 변경
+                }
+            }
             alert("내용이 수정되었습니다.");
         }
     </script>
